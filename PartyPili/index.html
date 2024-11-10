@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shape Selector</title>
+    <style>
+        /* The CSS you provided here */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        button {
+            width: 150px;
+            height: 50px;
+            margin: 10px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .disabled {
+            background-color: gray;
+            cursor: not-allowed;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>Shape Selector App</h1>
+    <p>Select a shape to reveal a name!</p>
+
+    <div id="result"></div>
+
+    <div class="container">
+        <button id="circle" onclick="selectShape('Circle')">Circle</button>
+        <button id="square" onclick="selectShape('Square')">Square</button>
+        <button id="triangle" onclick="selectShape('Triangle')">Triangle</button>
+        <button id="star" onclick="selectShape('Star')">Star</button>
+    </div>
+
+    <script>
+        // The JavaScript you provided here
+        const names = ["Alice", "Bob", "Claire", "David", "Eve"];
+        const shapes = ["Circle", "Square", "Triangle", "Star"];
+        let clickedShapes = [];
+
+        function selectShape(shape) {
+            if (clickedShapes.includes(shape)) {
+                alert(`${shape} has already been clicked!`);
+                return;
+            }
+
+            const assignedName = names[Math.floor(Math.random() * names.length)];
+            document.getElementById("result").innerHTML = `<h3>You selected: ${shape}</h3><p>Name Revealed: ${assignedName}</p>`;
+
+            document.getElementById(shape.toLowerCase()).classList.add("disabled");
+            document.getElementById(shape.toLowerCase()).disabled = true;
+
+            clickedShapes.push(shape);
+        }
+    </script>
+</body>
+</html>
